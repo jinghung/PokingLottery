@@ -1,0 +1,216 @@
+@charset "UTF-8";
+
+//背景不透明度
+@mixin transparent($color, $alpha) {
+    $rgba: rgba($color, $alpha);
+    $ie-hex-str: ie-hex-str($rgba);
+    background-color: transparent;
+    background-color: $rgba;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$ie-hex-str},endColorstr=#{$ie-hex-str});
+    zoom: 1;
+}
+
+//清除浮动
+@mixin clearfix() { 
+    &:before, &:after { 
+        content: ""; 
+        display: table; 
+    } 
+    &:after { 
+        clear: both; 
+    }
+}
+
+%clearfix {
+    @include clearfix;
+}
+
+//外陰影
+@mixin box-Shadow($rgb:#000, $lenght:2, $blurry:5){
+    box-shadow:#{$rgb} #{$lenght}px #{$lenght}px #{$blurry}px; 
+}
+
+//定位
+@mixin position ($position, $top: null, $right: null, $bottom: null, $left: null) {
+    position: $position;
+    top: $top; 
+    right: $right; 
+    bottom: $bottom; 
+    left: $left; 
+     
+}
+
+//字大小+行高
+@mixin font-size($sizeValue: 12 ){
+    font-size: $sizeValue + px; //fallback for old browsers
+    font-size: (0.0625 * $sizeValue) + rem;
+}
+  
+@mixin line-height($heightValue: 20 ){
+    line-height: $heightValue + px; //fallback for old browsers
+    line-height: (0.0625 * $heightValue) + rem;
+}
+  
+@mixin rhythm($sizeValue: 12, $heightValue: 20) {
+    @include font-size($sizeValue);
+    @include line-height($heightValue);
+}
+
+
+//inline-block
+$inline-block-alignment:middle !default;
+@mixin inline-block($alignment: $inline-block-alignment) {
+    display: inline-block;
+    @if $alignment and $alignment != none {
+        vertical-align: $alignment;
+    }
+    @if $legacy-support-for-ie {
+        *vertical-align: auto;
+        zoom: 1;
+        *display: inline;
+    }
+}
+
+//水平居中
+@mixin block-center($top: 0,$bottom: 0) {
+    margin-top: $top;
+    margin-bottom: $bottom;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+%block-center {
+    @include block-center;
+}
+
+//禁用样式disabled
+$colorDisabled: (text: #999, bg: #e3e3e3, border: #dbdbdb) !default; // textColor bgColor borderColor
+@mixin disabled($colorText: map-get($colorDisabled, text), $colorBg: map-get($colorDisabled, bg), $colorBorder: false) {
+    background-color: $colorBg !important;
+    color: $colorText !important;
+    cursor: default !important;
+    pointer-events: none !important;
+    @if $colorBorder {
+        border: 1px solid map-get($colorDisabled, border);
+    }
+}
+
+%disabled {
+    @include disabled;
+}
+
+
+//最小高度min-height
+@mixin min-height($height){
+    min-height: $height;
+    height: auto !important;
+    @if $legacy-support-for-ie {
+        _height: $height;
+    }
+}
+
+// ellipsis
+@mixin ellipsis($extend: true) {
+    @if $extend {
+        @extend %ellipsis;
+    }
+    @else {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+%ellipsis {
+    @include ellipsis(false);
+}
+
+// word-break強制斷行
+@mixin word-break($extend: true) {
+    @if $extend {
+        @extend %word-break;
+    }
+    @else {
+        white-space: normal;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+}
+
+%word-break {
+    @include word-break(false);
+}
+
+//function
+//-----------------------------------------------------
+
+// 為顏色添加白色，以百分比形式
+@function tint($color, $percent) {
+    @return mix(white, $color, $percent);
+}
+
+// 為顏色添加黑色，以百分比形式
+@function shade($color, $percent) {
+    @return mix(black, $color, $percent);
+}
+
+
+//media queries
+@mixin app-width($appwidth) {
+    @media screen and (max-width: $appwidth + px) {
+        @content;
+    }
+}
+
+//按鈕框架百分比顯示個數寬度
+/*@mixin box-width($boxwidth) {
+    width:(100/$boxwidth)+%;
+}*/
+
+//flex
+@mixin flex($justify:center, $align:center) {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+//flex-絕對置中
+@mixin flex-center() {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    justify-content: center;
+	-webkit-box-pack: center;
+	align-items: center;
+}
+
+//Animation 動畫
+@mixin keyframe ($animation_name) {
+    @-webkit-keyframes #{$animation_name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animation_name} {
+        @content;
+    }
+
+    @-o-keyframes #{$animation_name} {
+        @content;
+    }
+
+    @keyframes #{$animation_name} {
+        @content;
+    }
+}
+
+@mixin animation ($animation, $duration, $timing, $iteration: infinite, $direction: alternate) {
+    animation-name: $animation;
+    animation-duration: $duration;
+    animation-timing-function: $timing;
+    animation-iteration-count: $iteration;
+    animation-direction: $direction;
+}
+

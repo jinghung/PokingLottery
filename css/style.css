@@ -1,0 +1,261 @@
+@charset "UTF-8";
+@import url("normalize.css");
+/*@mixin box-width($boxwidth) {
+    width:(100/$boxwidth)+%;
+}*/
+ol, ul, li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  cursor: pointer;
+}
+
+a:focus {
+  outline: none;
+}
+
+*:focus {
+  outline: none;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+img {
+  display: block;
+}
+
+/*====================主要架構====================*/
+body {
+  font-size: 24px;
+  line-height: 1.5;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Microsoft YaHei UI", "Microsoft YaHei", Roboto, "Hiragino Sans GB", "Source Han Sans CN", Fira Sans, "Droid Sans", "Helvetica Neue", arial, sans-serif;
+  color: #ffffff;
+  background: #520000;
+  overflow-x: hidden;
+}
+
+@media all and (max-width: 720px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+@media all and (max-width: 460px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media all and (max-width: 360px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+#wrapper {
+  width: 1080px;
+  height: auto;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+@media all and (max-width: 1080px) {
+  #wrapper {
+    width: 100%;
+    background-size: 100%;
+  }
+}
+
+/*====================共用====================*/
+.CursorNon {
+  cursor: default;
+}
+
+/*====================戳戳樂====================*/
+.poke {
+  overflow: hidden;
+  position: relative;
+}
+
+.poke > img {
+  width: 100%;
+  display: block;
+}
+
+.poke .poke-wrap {
+  padding: 9% 4% 7%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+@media all and (max-width: 720px) {
+  .poke .poke-wrap {
+    padding: 11.5% 4% 8%;
+  }
+}
+
+.poke .poke-wrap .poke-play {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+@media all and (max-width: 720px) {
+  .poke .poke-wrap .poke-play {
+    margin: 0 0 9% 0;
+  }
+}
+
+.poke .poke-wrap .poke-play .poke-list {
+  display: block;
+  overflow: hidden;
+}
+
+@media all and (max-width: 720px) {
+  .poke .poke-wrap .poke-play .poke-list {
+    padding: 3%;
+  }
+}
+
+.poke .poke-wrap .poke-play .poke-list > li {
+  margin: 0.4% 0.5%;
+  width: 19%;
+  height: auto;
+  cursor: pointer;
+  float: left;
+  position: relative;
+}
+
+@media all and (max-width: 720px) {
+  .poke .poke-wrap .poke-play .poke-list > li {
+    width: 32.33333%;
+  }
+}
+
+.poke .poke-wrap .poke-play .poke-list > li > img {
+  display: block;
+  width: 100%;
+}
+
+.poke .poke-wrap .poke-play .poke-list > li .poke-status-click {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.poke .poke-wrap .poke-play .poke-list > li .poke-status-end {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.poke .poke-wrap .poke-play .poke-list > li.CursorNon {
+  cursor: default;
+}
+
+/*===========兌換成功===========*/
+#complate-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+#complate-mask .complate-wrap {
+  padding: 2% 3%;
+  width: 688px;
+  height: 434px;
+  background: url(../images/pop_complete.png) 0 0 no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -217px 0 0 -344px;
+}
+
+@media all and (max-width: 720px) {
+  #complate-mask .complate-wrap {
+    width: 100%;
+    margin: 0;
+    left: 0;
+  }
+}
+
+#complate-mask .complate-wrap .complate-con {
+  width: 100%;
+  height: 100%;
+  padding: 5% 8%;
+}
+
+#complate-mask .complate-wrap .complate-con .complate-info {
+  width: 100%;
+  height: 66%;
+}
+
+#complate-mask .complate-wrap .complate-con .complate-info .complate-text {
+  height: 36.5%;
+  padding: 2.5% 0 0 0;
+  font-size: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -webkit-box-pack: center;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+@media all and (max-width: 600px) {
+  #complate-mask .complate-wrap .complate-con .complate-info .complate-text {
+    font-size: 0.9em;
+  }
+}
+
+@media all and (max-width: 500px) {
+  #complate-mask .complate-wrap .complate-con .complate-info .complate-text {
+    font-size: 0.8em;
+  }
+}
+
+#complate-mask .complate-wrap .complate-con .complate-info .complate-giftimg {
+  padding: 3.2% 40% 4% 40%;
+}
+
+#complate-mask .complate-wrap .complate-con .complate-info .complate-giftimg > img {
+  width: 100%;
+}
+
+#complate-mask .complate-wrap .complate-con .complate-btn {
+  margin: 1% auto;
+  width: 40%;
+  display: block;
+  outline: none;
+}
+
+#complate-mask .complate-wrap .complate-con .complate-btn > button {
+  border: 0;
+  background: transparent;
+}
+
+#complate-mask .complate-wrap .complate-con .complate-btn > button > img {
+  width: 100%;
+}
+/*# sourceMappingURL=style.css.map */

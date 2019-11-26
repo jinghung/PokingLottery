@@ -1,0 +1,197 @@
+@import url('normalize.css');
+@import "mixin";
+ol,ul,li {list-style:none; padding:0; margin:0;}
+a {cursor: pointer;}
+a:focus {outline: none;}
+*:focus {outline: none;}
+* {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box}
+img {display: block;}
+
+//初始設定
+$fontSize:                       24px !default; 
+$fontLineHeight:                 1.5 !default;
+$fontFamily:                     system-ui, -apple-system, BlinkMacSystemFont, "Microsoft YaHei UI", "Microsoft YaHei", Roboto, "Hiragino Sans GB",  "Source Han Sans CN", Fira Sans, "Droid Sans", "Helvetica Neue", arial, sans-serif !default;
+$colorText:                      #ffffff !default;
+$colorBg:                        #520000 !default;
+$maxWidth:                       1080px !default;
+$percent:                        100%;
+$percent90:                      90%;
+
+//APP
+@mixin app-width($value: 720px) {
+    @media all and (max-width: $value) {
+        @content;
+    }
+}
+
+
+/*====================主要架構====================*/
+body {
+    font-size: $fontSize;
+    line-height: $fontLineHeight;
+    font-family: $fontFamily;
+    color: $colorText;
+    background: $colorBg;
+    overflow-x: hidden;
+    @include app-width() {
+        font-size: 20px;
+    }
+
+    @include app-width(460px) {
+        font-size: 16px;
+    }
+
+    @include app-width(360px) {
+        font-size: 14px;
+    }
+}
+
+#wrapper {
+    width: $maxWidth;
+    height: auto;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    @include app-width($maxWidth) {
+        width: 100%;
+        background-size: 100%;
+    }
+
+}
+
+
+/*====================共用====================*/
+.CursorNon {
+    cursor: default;
+}
+
+/*====================戳戳樂====================*/
+
+.poke {
+    overflow: hidden;
+    position: relative;
+    >img {
+        width: 100%;
+        display:block;
+    }
+    .poke-wrap {
+        padding: 9% 4% 7%;
+        width: 100%;
+        height: 100%;
+        @include position(absolute);
+        @include app-width(){
+            padding: 11.5% 4% 8%;
+        }
+        .poke-play {//戳戳樂遊玩
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            @include position(relative);
+            @include app-width() {
+                margin: 0 0 9% 0;
+            }
+            .poke-list {
+                display: block;
+                overflow: hidden;
+                @include app-width() {
+                    padding: 3%;
+                }
+                >li {
+                    margin: 0.4% 0.5%;
+                    width: 19%;
+                    height: auto;
+                    cursor: pointer;
+                    float: left;
+                    @include position(relative);
+                    @include app-width() {
+                        width: ((100%/3)-1);
+                    }
+                    >img {
+                        display: block;
+                        width: 100%;
+                    }
+                    .poke-status-click {
+                        @include position(absolute, $top:0, $left:0);
+                        display: none;
+                    }
+                    .poke-status-end {
+                        @include position(absolute, $top:0, $left:0);
+                        display: none;
+                    }
+                    &.CursorNon {
+                        cursor: default;
+                    }
+                }
+            }
+        }
+        
+    }
+}
+
+
+/*===========兌換成功===========*/
+#complate-mask {
+    width: 100%;
+    height: 100%;
+    @include position(fixed, $top:0, $left:0);
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.7);
+    //display: none;
+    .complate-wrap {
+        padding: 2% 3%;
+        width: 688px;
+        height: 434px;
+        background: url(../images/pop_complete.png) 0 0 no-repeat;
+        background-size: 100%;
+        @include position(absolute, $top:50%, $left:50%);
+        margin: -217px 0 0 -344px;
+        @include app-width(){
+            width: 100%;
+            margin: 0;
+            left: 0;
+        }
+        .complate-con {
+            width: 100%;
+            height: 100%;
+            padding: 5% 8%;
+            .complate-info {
+                width: 100%;
+                height: 66%;
+                .complate-text {
+                    height: 36.5%;
+                    padding: 2.5% 0 0 0;
+                    font-size: 1em;
+                    @include flex-center();
+                    @include app-width(600px) {
+                        font-size: 0.9em;
+                    }
+                    @include app-width(500px){
+                        font-size: 0.8em;
+                    }
+                }
+                .complate-giftimg {
+                    padding: 3.2% 40% 4% 40%;
+                    >img {
+                        width: 100%;
+                    }
+                }
+            }
+            .complate-btn {
+                margin: 1% auto;
+                width: 40%;
+                display: block;
+                outline: none;
+                >button {
+                    border: 0;
+                    background: transparent;
+                    >img {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        
+    }
+}
+

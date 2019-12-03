@@ -14,6 +14,7 @@ angular.module('SGT', ['ngSanitize']).controller('PockControll', function ($scop
             return;
         }
         $('.PokeItem' + i).find('.poke-status-change').attr('src', 'images/poke/' + $scope.BannerNum + '.png'); 
+        alert(i);
         setTimeout(function () {
             $scope.Rotate(i)
         }, 100); //圖片切換的時間,1000個單位為一秒鐘

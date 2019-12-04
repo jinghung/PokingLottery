@@ -178,7 +178,6 @@ body {
 }
 
 #complate-mask .complate-wrap {
-  padding: 2% 3%;
   width: 688px;
   height: 434px;
   background: url(../images/pop_complete.png) 0 0 no-repeat;
@@ -200,7 +199,7 @@ body {
 #complate-mask .complate-wrap .complate-con {
   width: 100%;
   height: 100%;
-  padding: 5% 8%;
+  padding: 6.5% 10%;
 }
 
 #complate-mask .complate-wrap .complate-con .complate-info {

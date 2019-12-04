@@ -8,15 +8,19 @@ angular.module('SGT', ['ngSanitize']).controller('PockControll', function ($scop
 
     /*戳戳樂動畫*/
     $scope.BannerNum = 0;
-    $scope.Rotate = function (i) {
+    $scope.Rotate = function (GetGiftInfo, GetAwardImg, i) {
         $scope.BannerNum++;
         if ($scope.BannerNum > 12) { //動畫圖片數量
+            $('.PokeItem' + i).find('.poke-status-click').hide();
+            $('.PokeItem' + i).find('.poke-status-end').show();
+            $scope.BannerNum = 0;
+            $scope.PokeMode = 1;
+            PopComplate(GetGiftInfo, GetAwardImg, i);
             return;
         }
         $('.PokeItem' + i).find('.poke-status-change').attr('src', 'images/poke/' + $scope.BannerNum + '.png'); 
-        alert(i);
         setTimeout(function () {
-            $scope.Rotate(i)
+            $scope.Rotate(GetGiftInfo, GetAwardImg, i)
         }, 100); //圖片切換的時間,1000個單位為一秒鐘
     }
 
@@ -41,14 +45,8 @@ angular.module('SGT', ['ngSanitize']).controller('PockControll', function ($scop
                         $scope.GetGiftInfo = '恭喜獲得' + $scope.GetAward.ItemName + 'X' + $scope.GetAward.Cnt + '。';
                     }
 
-                    $scope.Rotate(i);//執行戳戳樂動畫
-                    setTimeout(function () {
-                        $('.PokeItem' + i).find('.poke-status-click').hide();
-                        $('.PokeItem' + i).find('.poke-status-end').show();
-                        $scope.BannerNum = 0;
-                        $scope.PokeMode = 1;
-                        PopComplate($scope.GetGiftInfo, $scope.GetAward.img, i);
-                    }, 1300)
+                    $scope.Rotate($scope.GetGiftInfo, $scope.GetAward.img, i);//執行戳戳樂動畫
+
                 },
                 error: function (e) {
                     console.log(e);

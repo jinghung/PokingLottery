@@ -18,7 +18,7 @@ angular.module('SGT', ['ngSanitize']).controller('PockControll', function ($scop
             PopComplate(GetGiftInfo, GetAwardImg, i);
             return;
         }
-        $('.PokeItem' + i).find('.poke-status-change').attr('src', 'images/poke/' + $scope.BannerNum + '.png' + "?t=" + Math.random()); 
+        $('.PokeItem' + i).find('.poke-status-change').attr('src', 'images/poke/' + $scope.BannerNum + '.png?t=' + Math.random()); 
         setTimeout(function () {
             $scope.Rotate(GetGiftInfo, GetAwardImg, i)
         }, 100); //圖片切換的時間,1000個單位為一秒鐘

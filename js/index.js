@@ -22,9 +22,13 @@ function onImageLoaded(url, cb) {
     }
 }
 
-onImageLoaded('images/poke/9.png', function (icon) {
-    console.log('Google 的 Favicon 載入完成啦！')
-})
+var i = 1;
+for (i = 1; i <= 12; i++) {
+    onImageLoaded('images/poke/' + i + '.png', function (icon) {
+        console.log('圖片' + i + '載入完成啦！')
+    })
+}
+
 
 $(function () {
     SizeChange();

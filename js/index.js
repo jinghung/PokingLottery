@@ -1,21 +1,20 @@
 function onImageLoaded(url, cb) {
-    console.log(url);
     var image = new Image()
     image.src = url
 
     if (image.complete) {
         // 圖片已經被載入
-        cb(image)
+        //cb(image)
     } else {
         // 如果圖片未被載入，則設定載入時的回調
         image.onload = function () {
-            cb(image)
+            //cb(image)
         }
     }
 }
 
 var i = 1;
-for (i = 1; i <= 1; i++) {
+for (i = 1; i <= 12; i++) {
     onImageLoaded('images/poke/' + i + '.png');
 }
 

@@ -1,28 +1,21 @@
-function onImageLoaded(url, cb) {
-    var image = new Image()
-    image.src = url
-
-    if (image.complete) {
-        // 圖片已經被載入
-        //cb(image)
-    } else {
-        // 如果圖片未被載入，則設定載入時的回調
-        image.onload = function () {
-            //cb(image)
-        }
+function onImageLoaded() {
+    let i;
+    for (i = 1; i <= 12; i++) {
+        const image = new Image();
+        image.src = 'images/poke/' + i + '.png';
     }
 }
 
-var i = 1;
-for (i = 1; i <= 12; i++) {
-    onImageLoaded('images/poke/' + i + '.png');
-}
+
 
 
 $(function () {
     SizeChange();
-    //preloader();
 });
+
+window.onload =  function () {
+    onImageLoaded();
+}
 
 $(window).resize(function () {
     SizeChange();

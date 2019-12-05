@@ -1,16 +1,34 @@
 
-function preloader() {
+/*function preloader() {
     var i = 1;
     imageObj = new Image();
     for (i = 1; i <= 12; i++) {
         imageObj.src = 'images/poke/' + i + '.png';
         console.log(imageObj.src);
     }
-} 
+} */
+function onImageLoaded(url, cb) {
+    var image = new Image()
+    image.src = url
+
+    if (image.complete) {
+        // 圖片已經被載入
+        cb(image)
+    } else {
+        // 如果圖片未被載入，則設定載入時的回調
+        image.onload = function () {
+            cb(image)
+        }
+    }
+}
+
+onImageLoaded('images/poke/9.png', function (icon) {
+    console.log('Google 的 Favicon 載入完成啦！')
+})
 
 $(function () {
     SizeChange();
-    preloader();
+    //preloader();
 });
 
 $(window).resize(function () {

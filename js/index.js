@@ -1,7 +1,25 @@
 
+function preloader() {
+    // counter
+    var i = 1;
+    // create object
+    imageObj = new Image();
+    // set image list
+    /*images = new Array();
+    images[0] = 'image1.jpg';
+    images[1] = 'image2.jpg';
+    images[2] = 'image3.jpg';
+    images[3] = 'image4.jpg';*/
+    // start preloading
+    for (i = 1; i <= 12; i++) {
+        imageObj.src = 'images/poke/' + i + '.png';
+        console.log(imageObj.src);
+    }
+} 
 
 $(function () {
     SizeChange();
+    preloader();
 });
 
 $(window).resize(function () {

@@ -1,13 +1,5 @@
-
-/*function preloader() {
-    var i = 1;
-    imageObj = new Image();
-    for (i = 1; i <= 12; i++) {
-        imageObj.src = 'images/poke/' + i + '.png';
-        console.log(imageObj.src);
-    }
-} */
 function onImageLoaded(url, cb) {
+    console.log(url);
     var image = new Image()
     image.src = url
 
@@ -23,10 +15,8 @@ function onImageLoaded(url, cb) {
 }
 
 var i = 1;
-for (i = 1; i <= 12; i++) {
-    onImageLoaded('images/poke/' + i + '.png', function (icon) {
-        console.log('圖片' + i + '載入完成啦！')
-    })
+for (i = 1; i <= 1; i++) {
+    onImageLoaded('images/poke/' + i + '.png');
 }
 
 

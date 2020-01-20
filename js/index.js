@@ -6,9 +6,6 @@ function onImageLoaded() {
     }
 }
 
-
-
-
 $(function () {
     SizeChange();
 });
